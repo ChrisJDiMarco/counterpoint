@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Counterpoint</title><link rel="stylesheet" href="/styles.css">
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module" src="/src/app.js"></script>
+</head>
+<body>
+<div class="titlebar"><span>COUNTERPOINT</span><span class="titlebar-right">A STUDY IN PERFECT TIMING</span></div>
+<header><div class="brand"><span class="brand-symbol">⌘</span><h1>Counterpoint<span>01</span></h1></div><div class="header-actions"><button id="rules">How to play <span>?</span></button><button id="sound" aria-pressed="true">Sound on</button><button id="new-game" class="outline">New game</button></div></header>
+<main>
+<aside>
+<div class="eyebrow">THE OBJECTIVE</div><h2>Three lights.<br>One perfect beat.</h2><p class="intro">Bring your three lights to your three bells at the same moment.</p>
+<div class="players">
+<section class="player amber active" id="amber-player"><div class="player-top"><span class="color-dot"></span><strong>Amber</strong><span id="amber-role">YOU</span></div><div class="bell-progress" id="amber-bells"></div></section>
+<section class="player blue" id="blue-player"><div class="player-top"><span class="color-dot"></span><strong>Blue</strong><span id="blue-role">THE MACHINE</span></div><div class="bell-progress" id="blue-bells"></div></section>
+</div>
+<div class="turn-card"><div class="eyebrow" id="beat-label">BEAT 000</div><h3 id="turn-label">Your move</h3><p id="turn-help">Choose a brass switch to see what happens next.</p></div>
+<div id="selection-card" class="selection-card"><div class="eyebrow" id="selection-label">THE SHARED MACHINE</div><p id="selection-help">Every move advances both colors. Your opponent’s lone lights protect their junctions.</p></div>
+<button id="commit" class="primary" disabled>Choose a switch <span>↗</span></button>
+<div class="utility"><button id="undo" disabled>↶ Undo</button><button id="hint">◇ Hint</button></div>
+<div class="mode-area"><label for="mode">Play with</label><select id="mode"><option value="computer">The machine</option><option value="local">A friend · pass & play</option></select><label for="difficulty" id="difficulty-label">Machine strength</label><select id="difficulty"><option value="easy">Gentle</option><option value="normal" selected>Thoughtful</option><option value="hard">Challenging</option></select></div>
+<div class="side-foot"><span class="tiny-mark">◌</span> POSITION IS ONLY HALF THE GAME.</div>
+</aside>
+<section class="board-area" aria-label="Interactive 3D Counterpoint board">
+<div class="board-top"><div><span class="live-dot"></span><span id="scene-status">THE INSTRUMENT</span></div><span id="move-record">Twelve junctions. Six lights.</span></div>
+<div id="scene"><div id="loading">Assembling the instrument…</div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="board-bottom"><div class="view-controls"><button id="perspective" class="selected" title="Perspective view">Perspective</button><button id="top-view" title="Overhead view">Overhead</button><button id="reset-view" title="Reset camera">↺</button></div><span class="interaction-hint">DRAG TO ORBIT <i>·</i> SCROLL TO ZOOM</span><button id="motion" aria-pressed="true" title="Toggle animation">Motion on</button></div>
+<div id="node-access" class="node-access" aria-label="Keyboard switch controls"></div>
+</section>
+</main>
+<footer><span>COUNTERPOINT <i>/</i> ORIGINAL EDITION</span><span id="save-status">Your game saves automatically</span><span>FLIP A SWITCH. CHANGE THE RHYTHM.</span></footer>
+<dialog id="rules-dialog"><button class="dialog-close" id="close-rules" aria-label="Close rules">×</button><div class="eyebrow">THE ART OF ARRIVING TOGETHER</div><h2>Conduct the machine.</h2><p class="dialog-lead">You’re amber. Your three lights must occupy the three amber rings together. The rings are bells, not parking spaces.</p><div class="rule-grid"><article><b>01</b><h3>Choose a switch</h3><p>Click a junction to preview its other setting. Straight sends north → south and west → east. Turned sends north → east and west → south.</p></article><article><b>02</b><h3>Respect the light</h3><p>You may change an empty junction or one with your light at an entrance. A junction with only opposing lights is protected. Mixed colors let either player change it.</p></article><article><b>03</b><h3>Let the beat happen</h3><p>Press “Flip & advance.” All six lights travel one junction simultaneously. Tracks leaving an edge return at the opposite edge along the same row or column.</p></article><article><b>04</b><h3>Make a perfect chord</h3><p>Win when your three lights fill your three bells after any beat, even your opponent’s. Both colors finishing together, or three exact repetitions, is a draw.</p></article></div><p class="rule-tip">A longer route can be the better route. Use a detour to bring an early light into rhythm with the others.</p><p class="keyboard-help">Keyboard: Tab to a switch, Enter to select. Enter again to advance. Esc clears the preview. V changes view. ⌘Z undoes your last turn.</p><button class="primary" id="start-playing">Let’s play <span>↗</span></button></dialog>
+<dialog id="new-dialog"><div class="eyebrow">A FRESH COMPOSITION</div><h2>Start a new game?</h2><p>Your current game will be replaced. Choose a mode below.</p><div class="new-options"><button id="new-computer" class="primary">Play the machine</button><button id="new-local" class="outline">Pass & play</button></div><button id="cancel-new" class="text-button">Keep playing</button></dialog>
+<dialog id="result-dialog"><div class="eyebrow">THE FINAL CHORD</div><h2 id="result-title">Perfect timing.</h2><p id="result-copy"></p><div class="new-options"><button id="play-again" class="primary">Play again</button><button id="study-board" class="outline">Study the board</button></div></dialog>
+</body></html>
